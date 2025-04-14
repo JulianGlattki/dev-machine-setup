@@ -1,0 +1,8 @@
+- name: Create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ apps_dir }}"
+    - "{{ binary_dir }}"
+    - "{{ repos_dir }}"

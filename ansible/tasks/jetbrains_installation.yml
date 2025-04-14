@@ -1,0 +1,23 @@
+- name: Ensure target installation folder exists
+  file:
+    path: "{{ target_installation_folder }}"
+    state: directory
+
+- name: Download JetBrains IDEs
+  get_url:
+    url: "{{ download_url }}"
+    dest: "/tmp/"
+  register: jetbrains_download
+
+- name: Extract JetBrains IDEs
+  unarchive:
+    src: "{{ jetbrains_download.dest }}"
+    dest: "{{ target_installation_folder }}"
+    remote_src: yes
+    extra_opts:
+      - "--strip-components=1"
+
+- name: Remove archive after extraction
+  file:
+    path: "{{ jetbrains_download.dest }}"
+    state: absent

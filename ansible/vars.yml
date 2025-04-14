@@ -1,0 +1,38 @@
+# Directories
+apps_dir: "{{ ansible_env.HOME }}/apps"
+binary_dir: "{{ ansible_env.HOME }}/binaries"
+repos_dir: "{{ ansible_env.HOME }}/repos"
+dev_machine_setup_aliases: "{{ ansible_env.HOME }}/dev-machine-setup/dotfiles/.aliases"
+
+# ZSH
+zsh_install_script_url: "https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+
+# IntelliJ
+intellij_ultimate_download_url: "https://download-cdn.jetbrains.com/idea/ideaIU-2025.1.tar.gz"
+intellij_ultimate_folder: "{{ apps_dir }}/intellij"
+
+intellij_community_edition_download_url: "https://download-cdn.jetbrains.com/idea/ideaIC-2025.1.tar.gz"
+intellij_community_edition_folder: "{{ apps_dir }}/intellij-ce"
+
+# PyCharm
+pycharm_ultimate_download_url: "https://download-cdn.jetbrains.com/python/pycharm-2025.1.tar.gz"
+pycharm_ultimate_folder: "{{ apps_dir }}/pycharm"
+
+pycharm_community_edition_download_url: "https://download-cdn.jetbrains.com/python/pycharm-community-2025.1.tar.gz"
+pycharm_community_edition_folder: "{{ apps_dir }}/pycharm-ce"
+
+# CLion
+clion_download_url: "https://download-cdn.jetbrains.com/cpp/CLion-2025.1.tar.gz"
+clion_ultimate_folder: "{{ apps_dir }}/clion"
+
+# NVM
+nvm_download_url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh"
+
+# Conda
+
+# VSCode
+vscode_download_url: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+
+# Java
+java_version: "21"
+

@@ -1,0 +1,76 @@
+- name: Setup Development Environment
+  hosts: localhost
+  gather_facts: yes
+  vars_files:
+    - vars.yml
+  tasks:
+    # Default stuff
+    - import_tasks: tasks/basic.yml
+      tags:
+        - default
+    - import_tasks: tasks/directories.yml
+      tags:
+        - default
+    - import_tasks: tasks/aliases.yml
+      tags:
+        - default
+    - import_tasks: tasks/zsh.yml
+      tags:
+        - default
+    # Docker
+    - import_tasks: tasks/docker.yml
+      tags:
+        - docker
+    # Java specific
+    - name: Install IntelliJ Ultimate
+      import_tasks: tasks/jetbrains_installation.yml
+      vars:
+        download_url: "{{ intellij_ultimate_download_url }}"
+        target_installation_folder: "{{ intellij_ultimate_folder }}"
+      tags:
+        - java
+    - name: Install IntelliJ Community Edition
+      import_tasks: tasks/jetbrains_installation.yml
+      vars:
+        download_url: "{{ intellij_community_edition_download_url }}"
+        target_installation_folder: "{{ intellij_community_edition_folder }}"
+      tags:
+        - java
+    - import_tasks: tasks/java.yml
+      tags:
+        - java
+    # Python specific
+    - name: Install Pycharm Ultimate
+      import_tasks: tasks/jetbrains_installation.yml
+      vars:
+        download_url: "{{ pycharm_ultimate_download_url }}"
+        target_installation_folder: "{{ pycharm_ultimate_folder }}"
+      tags:
+        - python
+    - name: Install PyCharm Community Edition
+      import_tasks: tasks/jetbrains_installation.yml
+      vars:
+        download_url: "{{ pycharm_community_edition_download_url }}"
+        target_installation_folder: "{{ pycharm_community_edition_folder }}"
+      tags:
+        - python
+    - import_tasks: tasks/python.yml
+      tags:
+        - python
+    # Node
+    - import_tasks: tasks/nvm.yml
+      tags:
+        - node
+    # Other IDEs
+    - name: Install CLion Ultimate Edition
+      import_tasks: tasks/jetbrains_installation.yml
+      vars:
+        download_url: "{{ clion_download_url }}"
+        target_installation_folder: "{{ clion_ultimate_folder }}"
+      tags:
+        - clion
+    - import_tasks: tasks/vscode.yml
+      tags: vscode
+    - import_tasks: tasks/post_installation.yml
+      tags: default
+

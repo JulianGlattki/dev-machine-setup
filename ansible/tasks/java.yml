@@ -1,0 +1,51 @@
+- name: Ensure OpenJDK is installed
+  apt:
+    name: openjdk-{{ java_version }}-jdk
+    state: present
+    update_cache: yes
+  become: true
+
+# from: https://opendev.org/openstack/openstack-ansible-ops/commit/a3afb64654ff9d0ddf1dbfb7a66c230a90df7685
+- name: Set Java alternative
+  block:
+    - name: Get java version alternative
+      shell: >-
+        update-alternatives --query java | awk -F':' '/{{ java_version }}/ && /Alternative/ {print $2}'
+      register: java_alternatives
+      changed_when: false
+
+- name: Set Java version alternative
+  alternatives:
+    name: java
+    path: "{{ java_alternatives.stdout.strip() }}"
+  become: true
+
+- name: Set Javac alternative
+  block:
+    - name: Get javac version alternative
+      shell: >-
+        update-alternatives --query javac | awk -F':' '/{{ java_version }}/ && /Alternative/ {print $2}'
+      register: javac_alternatives
+      changed_when: false
+
+- name: Set Javac version alternative
+  alternatives:
+    name: javac
+    path: "{{ javac_alternatives.stdout.strip() }}"
+  become: true
+
+- name: Set JAVA_HOME environment variable
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.local_env"
+    regexp: '^export JAVA_HOME='
+    line: "export JAVA_HOME={{ java_alternatives.stdout.strip() | regex_replace('/bin/java$', '') }}"
+    create: yes
+    insertafter: EOF
+
+- name: Add JAVA_HOME to PATH
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.local_env"
+    regexp: '^export PATH=\$JAVA_HOME/bin:'
+    line: 'export PATH=$JAVA_HOME/bin:$PATH'
+    create: yes
+    insertafter: EOF

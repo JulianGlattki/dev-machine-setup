@@ -1,0 +1,6 @@
+- name: Setup NVM
+  block:
+    - name: Download and run NVM install script
+      ansible.builtin.shell: "PROFILE={{ ansible_env.HOME }}/.local_env bash -c 'curl -o- {{ nvm_download_url }} | bash'"
+      args:
+        executable: /bin/bash

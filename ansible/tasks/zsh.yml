@@ -1,0 +1,28 @@
+- name: Install ZSH
+  block:
+  - name: Install zsh if not present
+    package:
+      name: zsh
+      state: present
+    become: true
+
+  - name: Install Oh My Zsh
+    shell: |
+      if [ ! -d "{{ ansible_env.HOME }}/.oh-my-zsh" ]; then
+        sh -c "$(curl -fsSL {{ zsh_install_script_url }})" --unattended
+      fi
+    args:
+      creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+
+  - name: Create symlink for .zshrc
+    file:
+      src: "{{ ansible_env.HOME }}/dev-machine-setup/dotfiles/.zshrc"
+      dest: "{{ ansible_env.HOME }}/.zshrc"
+      state: link
+      force: yes # to overwrite
+
+  - name: Change default shell to zsh
+    user:
+      name: "{{ ansible_user_id }}"
+      shell: /usr/bin/zsh
+    become: true

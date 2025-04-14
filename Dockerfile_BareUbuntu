@@ -1,0 +1,20 @@
+FROM edwardbrown/ubuntu-wsl:latest
+
+# Update and install necessary packages
+RUN apt-get update && \
+    apt-get install -y sudo && \
+    apt-get install -y passwd
+
+# Add the user testuser and set password
+RUN useradd -m -s /bin/bash testuser && \
+    echo 'testuser:password' | chpasswd && \
+    usermod -aG sudo testuser
+
+# Set the default user to testuser
+USER testuser
+
+# Set the working directory
+WORKDIR /home/testuser
+
+# Start a bash shell
+CMD [ "bash" ]

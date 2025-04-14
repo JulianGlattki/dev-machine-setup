@@ -1,0 +1,3 @@
+- name: Post-installation message
+  debug:
+    msg: "Done! Please run 'zsh' or restart your terminal to apply the changes."

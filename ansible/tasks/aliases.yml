@@ -1,0 +1,11 @@
+- name: Create .aliases and .local_env file
+  block:
+  - name: Create symlink for .aliases
+    file:
+      src: "{{ dev_machine_setup_aliases }}"
+      dest: "{{ ansible_env.HOME }}/.aliases"
+      state: link
+  - name: Create an empty .local_env file
+    file:
+      path: "{{ ansible_env.HOME }}/.local_env"
+      state: touch

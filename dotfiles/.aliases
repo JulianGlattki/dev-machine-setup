@@ -1,0 +1,7 @@
+alias ij='if [ -x "$HOME/apps/intellij/bin/idea" ]; then "$HOME/apps/intellij/bin/idea"; else echo "IntelliJ IDEA is not installed."; fi'
+alias ijce='if [ -x "$HOME/apps/intellij-ce/bin/idea" ]; then "$HOME/apps/intellij-ce/bin/idea"; else echo "IntelliJ IDEA is not installed."; fi'
+
+alias pyc='if [ -x "$HOME/apps/pycharm/bin/pycharm" ]; then "$HOME/apps/pycharm/bin/pycharm"; else echo "PyCharm is not installed."; fi'
+alias pycce='if [ -x "$HOME/apps/pycharm-ce/bin/pycharm" ]; then "$HOME/apps/pycharm-ce/bin/pycharm"; else echo "PyCharm is not installed."; fi'
+
+alias clion='if [ -x "$HOME/apps/clion/bin/clion" ]; then "$HOME/apps/clion/bin/clion"; else echo "CLion is not installed."; fi'

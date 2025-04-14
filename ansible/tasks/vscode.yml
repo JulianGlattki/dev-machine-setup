@@ -1,0 +1,16 @@
+- name: Download VS Code .deb package
+  get_url:
+    url: "{{ vscode_download_url }}"
+    dest: /tmp/vscode.deb
+    mode: '0644'
+
+- name: Install VS Code
+  apt:
+    deb: /tmp/vscode.deb
+    state: present
+  become: true
+
+- name: Remove downloaded .deb package
+  file:
+    path: /tmp/vscode.deb
+    state: absent
