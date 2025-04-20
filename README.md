@@ -12,7 +12,14 @@ chmod +x ./bootstrap.sh
 The script will set up Git via SSH, pull this repo and run the Ansible playbook with the desired configuration
 (always running with the `default` tag, others as specified via the script).
 
-## Available tags
+## Available tags for Ansible
+
+The Ansible playbook can also be executed individually using
+
+```bash
+ansible-playbook ~/dev-machine-setup/ansible/setup.yml -i local, --connection=local --ask-become-pass --tags <tags>
+```
+
 - default
   - Install basic programs (Vim, Curl, etc.)
   - Setup directories
