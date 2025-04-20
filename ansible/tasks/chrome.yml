@@ -1,0 +1,19 @@
+- name: Install Chrome
+  become: true
+  block:
+    - name: Add Google Chrome repository key
+      apt_key:
+        url: https://dl.google.com/linux/linux_signing_key.pub
+        state: present
+      become: true
+
+    - name: Add Google Chrome repository to sources list
+      apt_repository:
+        repo: 'deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main'
+        state: present
+
+    - name: Install Google Chrome
+      apt:
+        name: google-chrome-stable
+        state: latest
+        update_cache: yes

@@ -17,7 +17,11 @@
     - import_tasks: tasks/zsh.yml
       tags:
         - default
-    # Docker
+    - import_tasks: tasks/chrome.yml
+      tags:
+        - default
+        - chrome
+    # Docker  
     - import_tasks: tasks/docker.yml
       tags:
         - docker
