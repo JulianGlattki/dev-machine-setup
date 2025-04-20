@@ -8,15 +8,19 @@
     - import_tasks: tasks/basic.yml
       tags:
         - default
+        - basic
     - import_tasks: tasks/directories.yml
       tags:
         - default
+        - directories
     - import_tasks: tasks/aliases.yml
       tags:
         - default
+        - aliases
     - import_tasks: tasks/zsh.yml
       tags:
         - default
+        - zsh
     - import_tasks: tasks/chrome.yml
       tags:
         - default
@@ -33,6 +37,7 @@
         target_installation_folder: "{{ intellij_ultimate_folder }}"
       tags:
         - java
+        - intellij-ultimate
     - name: Install IntelliJ Community Edition
       import_tasks: tasks/jetbrains_installation.yml
       vars:
@@ -40,9 +45,11 @@
         target_installation_folder: "{{ intellij_community_edition_folder }}"
       tags:
         - java
+        - intellij-ce
     - import_tasks: tasks/java.yml
       tags:
         - java
+        - java-language
     # Python specific
     - name: Install Pycharm Ultimate
       import_tasks: tasks/jetbrains_installation.yml
@@ -51,6 +58,7 @@
         target_installation_folder: "{{ pycharm_ultimate_folder }}"
       tags:
         - python
+        - pycharm-ultimate
     - name: Install PyCharm Community Edition
       import_tasks: tasks/jetbrains_installation.yml
       vars:
@@ -58,13 +66,16 @@
         target_installation_folder: "{{ pycharm_community_edition_folder }}"
       tags:
         - python
+        - pycharm-ce
     - import_tasks: tasks/python.yml
       tags:
         - python
+        - python-language
     # Node
     - import_tasks: tasks/nvm.yml
       tags:
         - node
+        - nvm
     # Other IDEs
     - name: Install CLion Ultimate Edition
       import_tasks: tasks/jetbrains_installation.yml
@@ -76,5 +87,7 @@
     - import_tasks: tasks/vscode.yml
       tags: vscode
     - import_tasks: tasks/post_installation.yml
-      tags: default
+      tags:
+        - default
+        - post_install
 
