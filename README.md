@@ -1,5 +1,5 @@
 # Dev Machine Setup
-Tooling to quickly set up my personal dev environment. 
+Tooling to quickly set up my personal Ubuntu dev environment. 
 
 ## Usage 
 Copy [bootstrap.sh](/bootstrap.sh) to `~` on local machine.
@@ -25,6 +25,7 @@ ansible-playbook ~/dev-machine-setup/ansible/setup.yml -i local, --connection=lo
   - Setup directories
   - Setup aliases
   - Setup zsh
+  - Install Chrome
 - docker
   - Setup Docker
 - java
