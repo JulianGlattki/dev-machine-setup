@@ -104,3 +104,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.aliases
 source ~/.local_env
+
+# Env
+export AWS_CLI_AUTO_PROMPT="on-partial"

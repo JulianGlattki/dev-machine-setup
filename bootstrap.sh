@@ -89,6 +89,13 @@ if [ "$vscode_choice" == "y" ]; then
     tags="$tags,vscode"
 fi
 
+# Ask user if they want to install VSCode
+echo "Do you want to install AWS? (y/n)"
+read -r aws_choice
+if [ "%aws_choice" == "y" ]; then
+    tags="$tags,aws"
+fi
+
 # Install Ansible
 if ! command -v ansible &> /dev/null; then
     echo "Installing Ansible..."

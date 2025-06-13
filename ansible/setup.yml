@@ -86,6 +86,8 @@
         - clion
     - import_tasks: tasks/vscode.yml
       tags: vscode
+    - import_tasks: tasks/aws.yml
+      tags: aws
     - import_tasks: tasks/post_installation.yml
       tags:
         - default
