@@ -92,4 +92,10 @@
       tags:
         - default
         - post_install
-
+    - name: Install Android Studio
+      import_tasks: tasks/jetbrains_installation.yml
+      vars:
+        download_url: "{{ android_studio_download_url }}"
+        target_installation_folder: "{{ android_studio_folder }}"
+      tags:
+        - android-studio
