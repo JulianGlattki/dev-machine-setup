@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -ex
-
 # Install git if not installed (on Ubuntu/Debian)
 if ! command -v git &> /dev/null; then
     echo "Git is not installed. Installing..."
