@@ -90,14 +90,14 @@ fi
 # Ask user if they want to install AWS
 echo "Do you want to install AWS? (y/n)"
 read -r aws_choice
-if [ "%aws_choice" == "y" ]; then
+if [ "$aws_choice" == "y" ]; then
     tags="$tags,aws"
 fi
 
 # Ask user if they want to install Android Studio
 echo "Do you want to install Android Studio? (y/n)"
 read -r android_studio_choice
-if [ "%android_studio_choice" == "y" ]; then
+if [ "$android_studio_choice" == "y" ]; then
     tags="$tags,android-studio"
 fi
 

@@ -88,10 +88,6 @@
       tags: vscode
     - import_tasks: tasks/aws.yml
       tags: aws
-    - import_tasks: tasks/post_installation.yml
-      tags:
-        - default
-        - post_install
     - name: Install Android Studio
       import_tasks: tasks/jetbrains_installation.yml
       vars:
@@ -99,3 +95,7 @@
         target_installation_folder: "{{ android_studio_folder }}"
       tags:
         - android-studio
+    - import_tasks: tasks/post_installation.yml
+      tags:
+        - default
+        - post_install
