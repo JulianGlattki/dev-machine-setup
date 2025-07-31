@@ -101,6 +101,12 @@ if [ "$android_studio_choice" == "y" ]; then
     tags="$tags,android-studio"
 fi
 
+# Ask user if they want to install Game Dev related things (Unity, etc.)
+echo "Do you want to install Game Dev things (Unity, etc.)? (y/n)"
+read -r game_dev_choice
+if [ "$game_dev_choice" == "y" ]; then
+    tags="$tags,game-dev,aes"
+fi
 
 # Install Ansible
 if ! command -v ansible &> /dev/null; then

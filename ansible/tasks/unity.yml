@@ -1,0 +1,23 @@
+- name: Install Unity Hub
+  become: true
+  block:
+    - name: Add Unity public signing key
+      ansible.builtin.apt_key:
+        url: https://hub.unity3d.com/linux/keys/public
+        state: present
+        keyring: /usr/share/keyrings/Unity_Technologies_ApS.gpg
+
+    - name: Add Unity Hub apt repository
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/Unity_Technologies_ApS.gpg] https://hub.unity3d.com/linux/repos/deb stable main"
+        filename: unityhub
+        state: present
+
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install unityhub package
+      ansible.builtin.apt:
+        name: unityhub
+        state: present

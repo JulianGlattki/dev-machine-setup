@@ -1,0 +1,46 @@
+- name: Clone docker-aseprite-linux repo, build, and move binaries
+  block:
+    - name: Clone docker-aseprite-linux repository
+      ansible.builtin.git:
+        repo: https://github.com/nilsve/docker-aseprite-linux.git
+        dest: /tmp/docker-aseprite-linux
+        update: yes
+
+    - name: Ensure depot_tools initialization block is inserted into compile.sh
+      blockinfile:
+        path: /tmp/docker-aseprite-linux/compile.sh
+        insertafter: 'export PATH="\${PWD}/depot_tools:\${PATH}"'
+        block: |
+          # Initialize depot_tools if needed
+          if [ -d "/dependencies/depot_tools" ]; then
+            cd /dependencies/depot_tools
+            echo "==> Bootstrapping depot_tools..."
+            ./update_depot_tools || ./gclient || ./ensure_bootstrap
+            cd -
+          else
+            echo "ERROR: depot_tools not found"
+            exit 1
+          fi
+    - name: Run make build in cloned repo
+      ansible.builtin.shell: make build
+      args:
+        chdir: /tmp/docker-aseprite-linux
+
+    - name: Ensure target directory ~/apps/aseprite/bin exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/apps/aseprite/bin"
+        state: directory
+        mode: '0755'
+
+    - name: Move built binaries to ~/apps/aseprite/bin
+      ansible.builtin.command: mv /tmp/docker-aseprite-linux/output/aseprite/build/bin "{{ ansible_env.HOME }}/apps/aseprite"
+      become: true
+
+    - name: Ensure ownership of aseprite/bin is correct
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/apps/aseprite/bin"
+        state: directory
+        recurse: true
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_id }}"
+      become: true

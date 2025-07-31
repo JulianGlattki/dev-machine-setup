@@ -95,6 +95,11 @@
         target_installation_folder: "{{ android_studio_folder }}"
       tags:
         - android-studio
+    # Game Dev
+    - import_tasks: tasks/unity.yml
+      tags: game-dev
+    - import_tasks: tasks/aesprite.yml
+      tags: aes
     - import_tasks: tasks/post_installation.yml
       tags:
         - default

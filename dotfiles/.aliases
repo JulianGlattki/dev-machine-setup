@@ -7,3 +7,5 @@ alias pycce='if [ -x "$HOME/apps/pycharm-ce/bin/pycharm" ]; then "$HOME/apps/pyc
 alias clion='if [ -x "$HOME/apps/clion/bin/clion" ]; then "$HOME/apps/clion/bin/clion"; else echo "CLion is not installed."; fi'
 
 alias studio='if [ -x "$HOME/apps/android-studio/bin/studio" ]; then "$HOME/apps/android-studio/bin/studio"; else echo "CLion is not installed."; fi'
+
+alias aseprite='if [ -x "$HOME/apps/aseprite/bin/aseprite" ]; then "$HOME/apps/aseprite/bin/aseprite"; else echo "Aseprite is not installed."; fi'
